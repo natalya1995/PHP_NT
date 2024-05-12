@@ -4,27 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\School;
-use Http\Requests\SchoolRequest;
+
 
 class SchoolController extends Controller
 {
 public function create(SchoolRequest $request)
 {
-    $request->validation();
-    ; $school=new School();
-    ; $school->name=$request->name;
-    ; $school->adress=$request->adress;
-    ; $school->save();
+    ; $request->validation();
+    ; ; $school=new School();
+    ; ; $school->name=$request->name;
+    ; ; $school->adress=$request->adress;
+    ; ; $school->save();
 
 
-    $school=School::create($request->all());
+    ; $school=School::create($request->all());
+      $validatedData = $request->validated();
+     $school = School::create($validatedData);
+     return response()->json($school, 201);
 
     return response()->json($school,201);
 
 }
     public function item($id)
     {
-        $school=School::findOrFail($id);
+        $school=School::with('students')->findOrFail($id);
         return response()->json($school,200);
 
         dd($id);

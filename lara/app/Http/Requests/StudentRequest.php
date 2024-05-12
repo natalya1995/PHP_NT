@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
-use App\Models\School;
+use App\Models\Student;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SchoolRequest extends FormRequest
+class StudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,8 @@ class SchoolRequest extends FormRequest
      return [
             'name' => 'required|min:3|max:20',
             'address' => 'required|min:5|max:30',
+            'school_ID'=>'required|min:1|max:30'
+
         ];
 }
 }
